@@ -1,0 +1,12 @@
+
+
+org.springframework.context.ApplicationContextInitializer=\
+com.mlf.divespringboot.context.AfterHelloWorldApplicationContextInitializer,\
+com.mlf.divespringboot.context.HelloWorldApplicationContextInitializer
+
+
+
+org.springframework.context.ApplicationListener=\
+com.mlf.divespringboot.listener.AfterHelloWorldApplicationListener,\
+com.mlf.divespringboot.listener.HelloWorldApplicationListener
+
