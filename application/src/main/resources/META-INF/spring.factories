@@ -8,5 +8,10 @@ com.mlf.divespringboot.context.HelloWorldApplicationContextInitializer
 
 org.springframework.context.ApplicationListener=\
 com.mlf.divespringboot.listener.AfterHelloWorldApplicationListener,\
-com.mlf.divespringboot.listener.HelloWorldApplicationListener
+com.mlf.divespringboot.listener.HelloWorldApplicationListener,\
+com.mlf.divespringboot.listener.BeforeConfigFileApplicationListener
+
+
+org.springframework.boot.SpringApplicationRunListener=\
+com.mlf.divespringboot.run.HelloWorldRunListener
 
