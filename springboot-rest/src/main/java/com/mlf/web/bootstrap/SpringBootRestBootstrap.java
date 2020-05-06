@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 @SpringBootApplication(scanBasePackages = {
         "com.mlf.web.controller",
-        "com.mlf.web.config"
+        "com.mlf.web.config",
 })
 public class SpringBootRestBootstrap {
     public static void main(String[] args) {

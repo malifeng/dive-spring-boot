@@ -13,7 +13,10 @@ public class PropertiesRestController {
     @PostMapping(value = "/add/props",
             consumes = "text/properties;charset=UTF-8"//过滤请求头
     )
-    public Properties user(@RequestBody Properties properties){
+    public Properties addProperties(
+//            @RequestBody
+            Properties properties
+    ) {
         return properties;
     }
 }
