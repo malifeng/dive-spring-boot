@@ -1,11 +1,14 @@
 package com.mlf.web.config;
 
 import com.mlf.web.http.converter.properties.PropertiesHttpMessageConverter;
-import com.mlf.web.support.PropertiesHandlerMethodArgumentResolver;
+import com.mlf.web.method.support.PropertiesHandlerMethodArgumentResolver;
+import com.mlf.web.method.support.PropertiesHandlerMethodReturnValueHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
@@ -37,11 +40,28 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
 
         requestMappingHandlerAdapter.setArgumentResolvers(newResolvers);
 
+        // 获取当前 requestMappingHandlerAdapter 所有的Handler对象
+        List<HandlerMethodReturnValueHandler> returnValueHandlers = requestMappingHandlerAdapter.getReturnValueHandlers();
+
+        List<HandlerMethodReturnValueHandler> newHandlers = new ArrayList<>(returnValueHandlers.size() + 1);
+
+        newHandlers.add(new PropertiesHandlerMethodReturnValueHandler());
+
+        newHandlers.addAll(newHandlers);
+
+        requestMappingHandlerAdapter.setCustomReturnValueHandlers(newHandlers);
+
+
     }
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
 
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedOrigins("*");
     }
 
     @Override
